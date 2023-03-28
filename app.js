@@ -1,10 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     const dino = document.querySelector('.dino');
+    let isJamping = false;
 
 
     function control(e) {
         if ( e.keyCode === 32) {
-            jump();
+            if(!isJamping){
+                isJamping = true;
+                jump();
+            }
         }
     }
 
@@ -21,13 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 let downTimerId = setInterval(() => {
                     if(position === 0) {
                         clearInterval(downTimerId);
+                        isJamping = false;
                     }
                     position -= 30;
                     dino.style.bottom = position + 'px';   
                 }, 20)
             }
-
-
 
             // move up
             console.log('up');
