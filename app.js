@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const dino = document.querySelector('.dino');
+    const grid = document.querySelector('.grid');
     let isJamping = false;
     let gravity = 0.9;
 
@@ -32,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         isJamping = false;
                     }
                     position -= 5;
-                    count --;
+                    count--;
                     position = position * gravity;
                     dino.style.bottom = position + 'px';   
                 }, 20)
@@ -40,13 +41,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // move up
             console.log('up');
-            count ++;
+            count++;
             position += 30;
             position = position * gravity;
             dino.style.bottom = position + 'px';
             console.log(dino.style.bottom);  
         }, 20)
     }
+
+    function generateObstacles() {
+        let obstaclePosition = 1000;
+        const obstacle = document.createElement('div');
+        obstacle.classList.add('obstacle');
+        grid.appendChild(obstacle);
+        obstacle.style.left = obstaclePosition + 'px';
+    }
+    generateObstacles();  
 
 
 
