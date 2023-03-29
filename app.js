@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
  
     function jump(){
         let count = 0;
-        let position = 0;
         let timerId = setInterval(() => {
 
             // move down
@@ -53,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let randomTime = Math.random() * 4000;
         let obstaclePosition = 1000;
         const obstacle = document.createElement('div');
-        obstacle.classList.add('obstacle');
+        if (!isGameOver) obstacle.classList.add('obstacle');
         grid.appendChild(obstacle);
         obstacle.style.left = obstaclePosition + 'px';
 
@@ -62,6 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 clearInterval(timerId);
                 alertText.innerHTML = 'Кінець гри!';
                 isGameOver = true;
+                // remove all children 
+                while (grid.firstChild) {
+                    grid.removeChild(grid.lastChild);
+                }
             }
 
             obstaclePosition -= 10;
